@@ -1,0 +1,3 @@
+variable "accountId" {
+type = string
+}
