@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket  = "gpt-blog-remotestate-backend-s3-dev"
+    bucket  = "gbs-blog-remotestate-backend-s3-dev"
     key     = "tfstate/environments/development/dynamodb/gbs-blog-mailing-list/terraform.tfstate"
     region  = "us-east-1"
     encrypt = true

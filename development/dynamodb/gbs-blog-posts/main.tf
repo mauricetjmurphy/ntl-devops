@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
     bucket  = "gbs-blog-remotestate-backend-s3-dev"
-    key     = "tfstate/environments/development/dynamodb/gbs-blog-articles/terraform.tfstate"
+    key     = "tfstate/environments/development/dynamodb/gbs-blog-posts/terraform.tfstate"
     region  = "us-east-1"
     encrypt = true
     profile = "default"
