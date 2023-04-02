@@ -16,7 +16,7 @@ resource "aws_iam_role" "blog_api_lambda_exec" {
 }
 
 resource "aws_iam_policy" "lambda_s3_dynamodb_access" {
-  name = "LambdaS3DynamoDBAccess"
+  name = var.iam_role_name
 
   policy = jsonencode({
     Version = "2012-10-17"
@@ -53,12 +53,12 @@ resource "aws_iam_policy" "lambda_s3_dynamodb_access" {
         ]
         Effect   = "Allow"
         Resource = [
-          "arn:aws:dynamodb:us-east-1:144817152095:table/gbs-blog-articles-climate-change",
-          "arn:aws:dynamodb:us-east-1:144817152095:table/gbs-blog-articles-green-tech",
-          "arn:aws:dynamodb:us-east-1:144817152095:table/gbs-blog-mailing-list",
-          "arn:aws:dynamodb:us-east-1:144817152095:table/gbs-blog-messages",
-          "arn:aws:dynamodb:us-east-1:144817152095:table/gbs-blog-posts",
-          "arn:aws:dynamodb:us-east-1:144817152095:table/gbs-blog-topics"
+          "arn:aws:dynamodb:us-east-1:144817152095:table/gbs-blog-articles-climate-change-prod",
+          "arn:aws:dynamodb:us-east-1:144817152095:table/gbs-blog-articles-green-tech-prod",
+          "arn:aws:dynamodb:us-east-1:144817152095:table/gbs-blog-mailing-list-prod",
+          "arn:aws:dynamodb:us-east-1:144817152095:table/gbs-blog-messages-prod",
+          "arn:aws:dynamodb:us-east-1:144817152095:table/gbs-blog-posts-prod",
+          "arn:aws:dynamodb:us-east-1:144817152095:table/gbs-blog-topics-prod",
         ]
       }
     ]
