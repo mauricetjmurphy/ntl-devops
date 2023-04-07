@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
     bucket  = "gbs-blog-remotestate-backend-s3-dev"
-    key     = "tfstate/environments/development/dynamodb/gbs-blog-articles-climate-change/terraform.tfstate"
+    key     = "tfstate/environments/development/dynamodb/gbs-blog-messages/terraform.tfstate"
     region  = "us-east-1"
     encrypt = true
     profile = "default"
@@ -11,15 +11,15 @@ terraform {
 resource "aws_dynamodb_table" "main" {
   name           = var.table_name
   billing_mode   = "PAY_PER_REQUEST"
-  hash_key       = "Id"
-  range_key      = "Date"
+  hash_key       = "Date"
+  range_key      = "Email"
 
-  attribute {
-      name = "Id"
+   attribute {
+      name = "Email"
       type = "S"
     }
 
-    attribute {
+  attribute {
       name = "Date"
       type = "S"
     }
@@ -27,7 +27,7 @@ resource "aws_dynamodb_table" "main" {
   global_secondary_index {
     name = "Date-index"
     hash_key = "Date"
-    range_key = "Id"
+    range_key = "Email"
     projection_type = "ALL"
-  }
+  }  
 }

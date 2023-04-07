@@ -55,6 +55,7 @@ resource "aws_iam_policy" "lambda_s3_dynamodb_access" {
         Resource = [
           "arn:aws:dynamodb:us-east-1:144817152095:table/gbs-blog-articles-climate-change-dev",
           "arn:aws:dynamodb:us-east-1:144817152095:table/gbs-blog-articles-green-tech-dev",
+          "arn:aws:dynamodb:us-east-1:144817152095:table/gbs-blog-articles-dev",
           "arn:aws:dynamodb:us-east-1:144817152095:table/gbs-blog-mailing-list-dev",
           "arn:aws:dynamodb:us-east-1:144817152095:table/gbs-blog-messages-dev",
           "arn:aws:dynamodb:us-east-1:144817152095:table/gbs-blog-posts-dev",

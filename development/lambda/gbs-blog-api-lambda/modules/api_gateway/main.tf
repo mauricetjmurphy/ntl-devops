@@ -53,6 +53,12 @@ resource "aws_api_gateway_resource" "health" {
   path_part   = "health"
 }
 
+resource "aws_api_gateway_resource" "articles" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  parent_id   = aws_api_gateway_rest_api.main.root_resource_id
+  path_part   = "articles"
+}
+
 resource "aws_api_gateway_resource" "climate_articles" {
   rest_api_id = aws_api_gateway_rest_api.main.id
   parent_id   = aws_api_gateway_rest_api.main.root_resource_id
@@ -117,6 +123,24 @@ resource "aws_api_gateway_integration" "main" {
   rest_api_id = aws_api_gateway_rest_api.main.id
   resource_id = aws_api_gateway_resource.health.id
   http_method = aws_api_gateway_method.get_health.http_method
+
+  integration_http_method = local.integration_http_method
+  type                    = local.integration_type
+  uri                     = local.uri
+}
+
+# /articles
+resource "aws_api_gateway_method" "articles_get" {
+  rest_api_id   = aws_api_gateway_rest_api.main.id
+  resource_id   = aws_api_gateway_resource.articles.id
+  http_method   = "GET"
+  authorization = local.authorization
+}
+
+resource "aws_api_gateway_integration" "articles_get" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.articles.id
+  http_method = aws_api_gateway_method.articles_get.http_method
 
   integration_http_method = local.integration_http_method
   type                    = local.integration_type

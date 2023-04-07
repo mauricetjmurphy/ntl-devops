@@ -23,4 +23,11 @@ resource "aws_dynamodb_table" "main" {
       name = "Email"
       type = "S"
     }
+
+    global_secondary_index {
+    name = "Email-index"
+    hash_key = "Email"
+    range_key = "Id"
+    projection_type = "ALL"
+  }  
 }

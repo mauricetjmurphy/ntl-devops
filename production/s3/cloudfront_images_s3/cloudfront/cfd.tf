@@ -3,7 +3,7 @@ locals {
 }
 
 resource "aws_cloudfront_origin_access_identity" "cloudfront" {
-  comment = "CloudFront Origin Access Identity for ${var.bucket_name}-${var.environment}"
+  comment = "CloudFront Origin Access Identity for ${var.bucket_name}"
 }
 
 
@@ -20,7 +20,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
 
   enabled             = true
   is_ipv6_enabled     = true
-  comment             = "Distribution for CDN  ${var.bucket_name}-${var.environment}"
+  comment             = "Distribution for CDN  ${var.bucket_name}"
   default_root_object = "index.html"
 
 
