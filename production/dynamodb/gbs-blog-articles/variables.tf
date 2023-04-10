@@ -5,3 +5,4 @@ variable "environment" {
 variable "table_name" {
   type    = string
 }
+

@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
-    bucket  = "gbs-blog-remotestate-backend-s3-dev"
-    key     = "tfstate/environments/development/dynamodb/gbs-blog-articles/terraform.tfstate"
+    bucket  = "gbs-blog-remotestate-backend-s3-prod"
+    key     = "tfstate/environments/production/dynamodb/gbs-blog-articles/terraform.tfstate"
     region  = "us-east-1"
     encrypt = true
     profile = "default"
@@ -30,6 +30,11 @@ resource "aws_dynamodb_table" "main" {
     range_key = "Id"
     projection_type = "ALL"
   }   
+
+  tags = {
+    Environment = var.environment
+    Project     = "GBS Blog Website"
+  }
 }
 
 

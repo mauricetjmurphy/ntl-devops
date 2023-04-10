@@ -42,6 +42,4 @@ resource "aws_dynamodb_table" "main" {
     range_key = "Title"
     projection_type = "ALL"
   }
-
-  
 }

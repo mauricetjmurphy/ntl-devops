@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
     bucket  = "gbs-blog-remotestate-backend-s3-prod"
-    key     = "tfstate/environments/production/dynamodb/gbs-blog-articles-climate-change/terraform.tfstate"
+    key     = "tfstate/environments/production/dynamodb/gbs-blog-keywords/terraform.tfstate"
     region  = "us-east-1"
     encrypt = true
     profile = "default"
@@ -11,23 +11,28 @@ terraform {
 resource "aws_dynamodb_table" "main" {
   name           = var.table_name
   billing_mode   = "PAY_PER_REQUEST"
-  hash_key       = "Id"
-  range_key      = "Date"
+  hash_key       = "CreatedAt"
+  range_key      = "Topic"
 
-  attribute {
-      name = "Id"
+   attribute {
+      name = "Topic"
       type = "S"
     }
 
   attribute {
-      name = "Date"
+      name = "CreatedAt"
       type = "S"
     }
 
   global_secondary_index {
-    name = "Date-index"
-    hash_key = "Date"
-    range_key = "Id"
+    name = "CreatedAt-index"
+    hash_key = "CreatedAt"
+    range_key = "Topic"
     projection_type = "ALL"
+  }
+
+  tags = {
+    Environment = var.environment
+    Project     = "GBS Blog Website"
   }
 }

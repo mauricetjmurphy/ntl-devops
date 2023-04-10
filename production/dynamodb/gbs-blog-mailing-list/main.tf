@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
     bucket  = "gbs-blog-remotestate-backend-s3-prod"
-    key     = "tfstate/environments/development/dynamodb/gbs-blog-mailing-list/terraform.tfstate"
+    key     = "tfstate/environments/production/dynamodb/gbs-blog-mailing-list/terraform.tfstate"
     region  = "us-east-1"
     encrypt = true
     profile = "default"
@@ -19,8 +19,20 @@ resource "aws_dynamodb_table" "main" {
       type = "S"
     }
 
-   attribute {
+  attribute {
       name = "Email"
       type = "S"
     }
+
+  global_secondary_index {
+    name = "Email-index"
+    hash_key = "Email"
+    range_key = "Id"
+    projection_type = "ALL"
+  }
+
+  tags = {
+    Environment = var.environment
+    Project     = "GBS Blog Website"
+  }
 }
