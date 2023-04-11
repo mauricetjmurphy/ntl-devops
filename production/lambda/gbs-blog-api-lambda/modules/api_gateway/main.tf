@@ -59,6 +59,12 @@ resource "aws_api_gateway_resource" "articles" {
   path_part   = "articles"
 }
 
+resource "aws_api_gateway_resource" "climate_articles" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  parent_id   = aws_api_gateway_rest_api.main.root_resource_id
+  path_part   = "climate-articles"
+}
+
 resource "aws_api_gateway_resource" "emails" {
   rest_api_id = aws_api_gateway_rest_api.main.id
   parent_id   = aws_api_gateway_rest_api.main.root_resource_id
@@ -87,6 +93,12 @@ resource "aws_api_gateway_resource" "signup" {
   rest_api_id = aws_api_gateway_rest_api.main.id
   parent_id   = aws_api_gateway_rest_api.main.root_resource_id
   path_part   = "signup"
+}
+
+resource "aws_api_gateway_resource" "tech_articles" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  parent_id   = aws_api_gateway_rest_api.main.root_resource_id
+  path_part   = "tech-articles"
 }
 
 # Define the API Gateway methods and integrations for each route
@@ -135,17 +147,35 @@ resource "aws_api_gateway_integration" "articles_get" {
   uri                     = local.uri
 }
 
-resource "aws_api_gateway_method" "articles_options" {
+# /climate-articles
+resource "aws_api_gateway_method" "climate_articles_get" {
   rest_api_id   = aws_api_gateway_rest_api.main.id
-  resource_id   = aws_api_gateway_resource.articles.id
+  resource_id   = aws_api_gateway_resource.climate_articles.id
+  http_method   = "GET"
+  authorization = local.authorization
+}
+
+resource "aws_api_gateway_integration" "climate_articles_get" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.climate_articles.id
+  http_method = aws_api_gateway_method.climate_articles_get.http_method
+
+  integration_http_method = local.integration_http_method
+  type                    = local.integration_type
+  uri                     = local.uri
+}
+
+resource "aws_api_gateway_method" "climate_articles_options" {
+  rest_api_id   = aws_api_gateway_rest_api.main.id
+  resource_id   = aws_api_gateway_resource.climate_articles.id
   http_method   = "OPTIONS"
   authorization = local.authorization
 }
 
-resource "aws_api_gateway_integration" "articles_options" {
+resource "aws_api_gateway_integration" "climate_articles_options" {
   rest_api_id = aws_api_gateway_rest_api.main.id
-  resource_id = aws_api_gateway_resource.articles.id
-  http_method = aws_api_gateway_method.articles_options.http_method
+  resource_id = aws_api_gateway_resource.climate_articles.id
+  http_method = aws_api_gateway_method.climate_articles_options.http_method
 
   integration_http_method = local.integration_http_method
   type                    = local.integration_type
@@ -389,6 +419,41 @@ resource "aws_api_gateway_integration" "signup_post" {
   rest_api_id = aws_api_gateway_rest_api.main.id
   resource_id = aws_api_gateway_resource.signup.id
   http_method = aws_api_gateway_method.signup_post.http_method
+
+  integration_http_method = local.integration_http_method
+  type                    = local.integration_type
+  uri                     = local.uri
+}
+
+# /tech-articles
+resource "aws_api_gateway_method" "tech_articles_get" {
+  rest_api_id   = aws_api_gateway_rest_api.main.id
+  resource_id   = aws_api_gateway_resource.tech_articles.id
+  http_method   = "GET"
+  authorization = local.authorization
+}
+
+resource "aws_api_gateway_integration" "tech_articles_get" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.tech_articles.id
+  http_method = aws_api_gateway_method.tech_articles_get.http_method
+
+  integration_http_method = local.integration_http_method
+  type                    = local.integration_type
+  uri                     = local.uri
+}
+
+resource "aws_api_gateway_method" "tech_articles_options" {
+  rest_api_id   = aws_api_gateway_rest_api.main.id
+  resource_id   = aws_api_gateway_resource.tech_articles.id
+  http_method   = "OPTIONS"
+  authorization = local.authorization
+}
+
+resource "aws_api_gateway_integration" "tech_articles_options" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.tech_articles.id
+  http_method = aws_api_gateway_method.tech_articles_options.http_method
 
   integration_http_method = local.integration_http_method
   type                    = local.integration_type
