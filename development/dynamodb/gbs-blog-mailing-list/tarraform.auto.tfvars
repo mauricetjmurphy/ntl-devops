@@ -1,0 +1,1 @@
+table_name = "gbs-blog-mailing-list-dev"
