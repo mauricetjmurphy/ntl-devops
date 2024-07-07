@@ -36,7 +36,7 @@ resource "aws_iam_policy" "lambda_s3_dynamodb_access" {
           "s3:PutObject",
           "s3:ListBucket",
         ]
-        Effect   = "Allow"
+        Effect = "Allow"
         Resource = [
           "arn:aws:s3:::gbs-blog-articles-climate-change/*",
           "arn:aws:s3:::gbs-blog-articles-green-tech/*"
@@ -51,7 +51,7 @@ resource "aws_iam_policy" "lambda_s3_dynamodb_access" {
           "dynamodb:Query",
           "dynamodb:Scan",
         ]
-        Effect   = "Allow"
+        Effect = "Allow"
         Resource = [
           "arn:aws:dynamodb:us-east-1:144817152095:table/gbs-blog-articles-prod",
           "arn:aws:dynamodb:us-east-1:144817152095:table/gbs-blog-mailing-list-prod",

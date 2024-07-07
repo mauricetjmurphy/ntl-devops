@@ -1,1 +1,0 @@
-table_name = "gbs-blog-keywords-dev"

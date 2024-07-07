@@ -46,7 +46,7 @@ resource "aws_s3_bucket_acl" "main" {
 resource "aws_s3_bucket_cors_configuration" "main" {
   bucket = aws_s3_bucket.main.id
 
-   cors_rule {
+  cors_rule {
     allowed_headers = ["*"]
     allowed_methods = ["GET", "PUT", "POST"]
     allowed_origins = ["*"]

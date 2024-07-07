@@ -20,7 +20,7 @@ locals {
 }
 
 module "s3_bucket" {
-  source  = "git@github.com:mauricetjmurphy/gemtech-terraform-modules.git//s3"
+  source                  = "git@github.com:mauricetjmurphy/gemtech-terraform-modules.git//s3"
   name                    = "${local.name}-bucket-cdn"
   environment             = local.environment
   versioning              = true

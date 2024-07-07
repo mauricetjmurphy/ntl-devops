@@ -1,15 +1,15 @@
 variable "function_name" {
-  type    = string
+  type = string
 }
 
 variable "bucket_id" {
-  type    = string
+  type = string
 }
 
 variable "iam_role_arn" {
-  type    = string
+  type = string
 }
 
 variable "lambda_arn" {
-  type    = string
+  type = string
 }

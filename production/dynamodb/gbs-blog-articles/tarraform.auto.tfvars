@@ -1,2 +1,2 @@
-environment="prod"
-table_name = "gbs-blog-articles-prod"
+environment = "prod"
+table_name  = "gbs-blog-articles-prod"

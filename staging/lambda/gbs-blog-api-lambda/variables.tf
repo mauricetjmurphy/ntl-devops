@@ -1,15 +1,15 @@
 variable "function_name" {
-  type    = string
+  type = string
 }
 
 variable "iam_role_name" {
-  type    = string
+  type = string
 }
 
 variable "bucket_name" {
-  type    = string
+  type = string
 }
 
 variable "api_gateway_name" {
-  type    = string
+  type = string
 }

@@ -4,6 +4,6 @@ output "api_gateway_arn" {
 }
 
 output "base_url" {
-  value = "${aws_api_gateway_deployment.main.invoke_url}"
+  value = aws_api_gateway_deployment.main.invoke_url
 }
 

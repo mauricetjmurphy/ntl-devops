@@ -1,13 +1,13 @@
 variable "api_gateway_name" {
-  type    = string
+  type = string
 }
 
 variable "lambda_arn" {
-  type    = string
+  type = string
 }
 
 variable "function_name" {
-  type    = string
+  type = string
 }
 
 variable "aws_region" {

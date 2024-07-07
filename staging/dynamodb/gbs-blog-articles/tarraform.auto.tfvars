@@ -1,2 +1,2 @@
-environment="dev"
-table_name = "gbs-blog-articles-dev"
+environment = "dev"
+table_name  = "gbs-blog-articles-dev"

@@ -1,5 +1,5 @@
 resource "aws_api_gateway_rest_api" "main" {
-  name        = var.api_gateway_name
+  name = var.api_gateway_name
 }
 
 resource "aws_cloudwatch_log_group" "main_api_gw" {
@@ -26,8 +26,8 @@ resource "aws_api_gateway_integration" "proxy_lambda" {
   resource_id = aws_api_gateway_resource.proxy_resource.id
   http_method = aws_api_gateway_method.proxy_any.http_method
 
-  type          = "AWS_PROXY"
-  uri           = "arn:aws:apigateway:${var.aws_region}:lambda:path/2015-03-31/functions/${var.lambda_arn}/invocations"
+  type                    = "AWS_PROXY"
+  uri                     = "arn:aws:apigateway:${var.aws_region}:lambda:path/2015-03-31/functions/${var.lambda_arn}/invocations"
   integration_http_method = "POST"
 }
 
@@ -105,10 +105,10 @@ resource "aws_api_gateway_resource" "tech_articles" {
 
 # Helper locals for method and integration options
 locals {
-  authorization = "NONE"
+  authorization           = "NONE"
   integration_http_method = "POST"
-  integration_type = "AWS_PROXY"
-  uri = "arn:aws:apigateway:${var.aws_region}:lambda:path/2015-03-31/functions/${var.lambda_arn}/invocations"
+  integration_type        = "AWS_PROXY"
+  uri                     = "arn:aws:apigateway:${var.aws_region}:lambda:path/2015-03-31/functions/${var.lambda_arn}/invocations"
 }
 
 # /health
@@ -180,7 +180,7 @@ resource "aws_api_gateway_integration" "climate_articles_options" {
   integration_http_method = local.integration_http_method
   type                    = local.integration_type
   uri                     = local.uri
-}   
+}
 
 # /emails
 resource "aws_api_gateway_method" "emails_get" {
@@ -461,7 +461,7 @@ resource "aws_api_gateway_integration" "tech_articles_options" {
 }
 
 resource "aws_api_gateway_deployment" "main" {
-  depends_on  = [aws_api_gateway_integration.main]
+  depends_on = [aws_api_gateway_integration.main]
 
   rest_api_id = aws_api_gateway_rest_api.main.id
   stage_name  = "dev"

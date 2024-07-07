@@ -9,25 +9,25 @@ terraform {
 }
 
 resource "aws_dynamodb_table" "main" {
-  name           = var.table_name
-  billing_mode   = "PAY_PER_REQUEST"
-  hash_key       = "Date"
-  range_key      = "Email"
-
-   attribute {
-      name = "Email"
-      type = "S"
-    }
+  name         = var.table_name
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "Date"
+  range_key    = "Email"
 
   attribute {
-      name = "Date"
-      type = "S"
-    }
+    name = "Email"
+    type = "S"
+  }
+
+  attribute {
+    name = "Date"
+    type = "S"
+  }
 
   global_secondary_index {
-    name = "Date-index"
-    hash_key = "Date"
-    range_key = "Email"
+    name            = "Date-index"
+    hash_key        = "Date"
+    range_key       = "Email"
     projection_type = "ALL"
   }
 

@@ -1,19 +1,19 @@
 variable "iam_role_name" {
-  type    = string
+  type = string
 }
 
 variable "function_name" {
-  type    = string
+  type = string
 }
 
 variable "iam_role_arn" {
-  type    = string
+  type = string
 }
 
 variable "lambda_arn" {
-  type    = string
+  type = string
 }
 
 variable "api_gateway_arn" {
-  type    = string
+  type = string
 }

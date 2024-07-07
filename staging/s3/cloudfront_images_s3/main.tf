@@ -10,7 +10,7 @@ terraform {
 
 module "cloudfront" {
   # source                = "git@github.com:mauricetjmurphy/Terraform-Modules.git//cloudfront"
-  source                = "./cloudfront"
-  environment           = var.environment
-  bucket_name           = var.static_libs_s3_bucket_name
+  source      = "./cloudfront"
+  environment = var.environment
+  bucket_name = var.static_libs_s3_bucket_name
 }
